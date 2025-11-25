@@ -14,6 +14,28 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      const navbarHeight = 80; // Approximate height of the fixed navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      
+      // Optional: Update URL hash without jumping
+      window.history.pushState(null, "", href);
+    }
+  };
+
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
@@ -27,7 +49,11 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex-shrink-0 flex items-center">
-            <a href="#home" className="text-2xl font-serif font-bold text-accent tracking-tighter">
+            <a 
+              href="#home" 
+              onClick={(e) => handleNavClick(e, '#home')}
+              className="text-2xl font-serif font-bold text-accent tracking-tighter cursor-pointer"
+            >
               {RESUME_DATA.name.split(' ')[0]}<span className="text-white">.</span>
             </a>
           </div>
@@ -38,7 +64,8 @@ const Navbar: React.FC = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-gray-300 hover:text-accent hover:bg-white/5 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-gray-300 hover:text-accent hover:bg-white/5 px-3 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer"
                 >
                   {link.name}
                 </a>
@@ -65,8 +92,8 @@ const Navbar: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="text-gray-300 hover:text-accent block px-3 py-2 rounded-md text-base font-medium"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-gray-300 hover:text-accent block px-3 py-2 rounded-md text-base font-medium cursor-pointer"
               >
                 {link.name}
               </a>

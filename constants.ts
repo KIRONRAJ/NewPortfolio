@@ -2,15 +2,15 @@ import { Project, Experience, Skill, SocialLink, Certification, Education } from
 
 export const RESUME_DATA = {
   name: "Kironraj Odatt",
-  title: "Full Stack Engineer and Network Engineer",
-  tagline: "Dynamic and dedicated developer passionate about crafting engaging online experiences.",
+  title: "Master's Student in Cyber Security with experience as a Full Stack and Network Engineer",
+  tagline: "Current master's student in Cyber Security, leveraging full stack and network engineering skills to build secure and efficient digital solutions.",
   about: `I am currently pursuing a Master's in Information Technology, majoring in Cyber Security at Whitecliffe College in Wellington, New Zealand.
   
   Previously, I worked as a Freelance Web Developer and Software Engineer, leveraging cutting-edge technologies to deliver high-quality solutions. I am committed to excellence, adaptability, and continuous learning in the ever-evolving digital landscape, bridging the gap between robust security architecture and intuitive UI/UX design.`,
   location: "Upper Hutt, Wellington, New Zealand",
   email: "contact@kironraj.com",
   phone: "+64 22-131-9495",
-  resumeLink: "#" // Placeholder for actual resume file
+  resumeLink: "/resume.pdf"
 };
 
 export const SKILLS: Skill[] = [
@@ -62,7 +62,7 @@ export const EDUCATION: Education[] = [
 ];
 
 export const CERTIFICATIONS: Certification[] = [
-  { name: "Certified Ethical Hacker (CEH)", issuer: "EC-Council", year: "2023" }, // Kept from previous context if valid, else remove. Assuming valid as user added cyber sec major.
+  { name: "Certified Ethical Hacker (CEH)", issuer: "EC-Council", year: "2023" },
   { name: "Red Hat Certified System Administrator (RHCSA)", issuer: "Red Hat", year: "2018" },
   { name: "AWS Certified Solutions Architect - Associate", issuer: "Udemy / AWS", year: "2020" },
   { name: "cPanel Professional Certification (CPP)", issuer: "cPanel", year: "2021" },
@@ -120,7 +120,7 @@ export const PROJECTS: Project[] = [
     title: "Intelligent Aquaponics",
     description: "An IoT-based system merging aquaculture with hydroponics. Features automated water temperature regulation, fish feeding, and a web application for real-time data visualization and monitoring.",
     technologies: ["IoT", "Android", "Web App", "Sensors", "Automation"],
-    imageUrl: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1582757793483-e407049be006?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     link: "#",
     github: "https://github.com/KIRONRAJ"
   },
@@ -129,7 +129,7 @@ export const PROJECTS: Project[] = [
     title: "Wireless Audio Transmitter (FM)",
     description: "A compact device transmitting FM waves to amplify and modulate audio signals. Explored applications in assistive technology as a discreet wireless hearing aid.",
     technologies: ["Electronics", "Signal Processing", "Hardware"],
-    imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=800&auto=format&fit=crop",
     link: "#",
     github: "https://github.com/KIRONRAJ"
   }

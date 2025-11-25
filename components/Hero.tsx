@@ -35,7 +35,11 @@ const Hero: React.FC = () => {
               View Work
               <ArrowRight className="ml-2 -mr-1 h-5 w-5" />
             </a>
-            <a href={RESUME_DATA.resumeLink} className="inline-flex items-center justify-center px-8 py-3 border border-gray-600 text-base font-medium rounded-full text-white hover:bg-white/5 transition-all duration-300 group hover:border-accent">
+            <a 
+              href={RESUME_DATA.resumeLink} 
+              download="Kironraj_Odatt_Resume.pdf"
+              className="inline-flex items-center justify-center px-8 py-3 border border-gray-600 text-base font-medium rounded-full text-white hover:bg-white/5 transition-all duration-300 group hover:border-accent"
+            >
               Download Resume
               <Download className="ml-2 -mr-1 h-5 w-5 group-hover:translate-y-1 transition-transform" />
             </a>

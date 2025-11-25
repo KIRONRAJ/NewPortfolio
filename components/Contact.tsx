@@ -81,23 +81,52 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Visual Form (Stateless for demo) */}
-          <form className="space-y-6 animate-on-scroll opacity-0 translate-y-10 transition-all duration-700 ease-out" onSubmit={(e) => e.preventDefault()}>
+          {/* Visual Form linked to Netlify */}
+          <form 
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            className="space-y-6 animate-on-scroll opacity-0 translate-y-10 transition-all duration-700 ease-out"
+          >
+            {/* Hidden input for Netlify form detection */}
+            <input type="hidden" name="form-name" value="contact" />
+            
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium text-gray-300">Name</label>
-                <input type="text" id="name" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors" placeholder="John Doe" />
+                <input 
+                  type="text" 
+                  name="name" 
+                  id="name" 
+                  required
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors" 
+                  placeholder="John Doe" 
+                />
               </div>
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-medium text-gray-300">Email</label>
-                <input type="email" id="email" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors" placeholder="john@example.com" />
+                <input 
+                  type="email" 
+                  name="email" 
+                  id="email" 
+                  required
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors" 
+                  placeholder="john@example.com" 
+                />
               </div>
             </div>
             <div className="space-y-2">
               <label htmlFor="message" className="text-sm font-medium text-gray-300">Message</label>
-              <textarea id="message" rows={5} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors" placeholder="Hello, I'd like to talk about..."></textarea>
+              <textarea 
+                name="message" 
+                id="message" 
+                rows={5} 
+                required
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors" 
+                placeholder="Hello, I'd like to talk about..."
+              ></textarea>
             </div>
-            <button className="w-full bg-accent text-primary font-bold py-4 rounded-lg hover:opacity-90 hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 transform hover:scale-[1.02]">
+            <button type="submit" className="w-full bg-accent text-primary font-bold py-4 rounded-lg hover:opacity-90 hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 transform hover:scale-[1.02]">
               Send Message
             </button>
           </form>

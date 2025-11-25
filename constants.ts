@@ -10,6 +10,7 @@ export const RESUME_DATA = {
   location: "Upper Hutt, Wellington, New Zealand",
   email: "contact@kironraj.com",
   phone: "+64 22-131-9495",
+  // Simple path to the resume file. Ensure 'resume.pdf' is in your 'public' folder.
   resumeLink: "/resume.pdf"
 };
 
@@ -120,7 +121,7 @@ export const PROJECTS: Project[] = [
     title: "Intelligent Aquaponics",
     description: "An IoT-based system merging aquaculture with hydroponics. Features automated water temperature regulation, fish feeding, and a web application for real-time data visualization and monitoring.",
     technologies: ["IoT", "Android", "Web App", "Sensors", "Automation"],
-    imageUrl: "https://images.unsplash.com/photo-1582757793483-e407049be006?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imageUrl: "https://images.unsplash.com/photo-1555034637-293674620020?q=80&w=1974&auto=format&fit=crop",
     link: "#",
     github: "https://github.com/KIRONRAJ"
   },

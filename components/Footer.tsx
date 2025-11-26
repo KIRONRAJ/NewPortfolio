@@ -3,13 +3,10 @@ import { RESUME_DATA } from '../constants';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-primary py-8 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 text-center">
-        <p className="text-gray-500 text-sm">
-          © {new Date().getFullYear()} {RESUME_DATA.name}. All rights reserved.
-        </p>
-        <p className="text-gray-600 text-xs mt-2">
-          Built with React and Tailwind.
+    <footer className="py-6 text-center relative z-10">
+      <div className="max-w-7xl mx-auto px-4">
+        <p className="text-slate-500 text-xs font-mono">
+          Designed & Built by {RESUME_DATA.name}
         </p>
       </div>
     </footer>

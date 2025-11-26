@@ -7,38 +7,40 @@ const Experience: React.FC = () => {
   const containerRef = useScrollAnimation();
 
   return (
-    <section id="experience" className="py-24 bg-primary relative">
+    <section id="experience" className="py-24 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={containerRef}>
-        <div className="text-center mb-16 animate-on-scroll opacity-0 translate-y-10 transition-all duration-700 ease-out">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Work Experience</h2>
-          <div className="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+        <div className="flex items-center gap-4 mb-16 animate-on-scroll opacity-0 translate-y-10 transition-all duration-700 ease-out">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-100 flex items-center">
+            <span className="text-accent text-xl mr-2">03.</span> Experience_Log
+          </h2>
+          <div className="h-[1px] bg-slate-700 flex-grow max-w-xs"></div>
         </div>
 
-        <div className="relative border-l border-gray-700 ml-4 md:ml-10 space-y-12">
+        <div className="relative border-l border-slate-800 ml-4 md:ml-10 space-y-12">
           {EXPERIENCE.map((job) => (
             <div key={job.id} className="relative pl-8 md:pl-12 group animate-on-scroll opacity-0 translate-y-10 transition-all duration-700 ease-out">
               {/* Dot */}
-              <div className="absolute -left-[9px] top-1 w-5 h-5 bg-primary border-4 border-accent rounded-full group-hover:bg-accent transition-colors duration-300"></div>
+              <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-slate-600 rounded-full group-hover:bg-accent transition-colors duration-300"></div>
               
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <h3 className="text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">
+                <h3 className="text-xl font-bold text-slate-100 group-hover:text-accent transition-colors duration-300">
                   {job.role}
                 </h3>
-                <span className="text-sm font-medium text-gray-500 bg-white/5 px-3 py-1 rounded-full mt-2 sm:mt-0 w-fit">
+                <span className="text-xs font-mono text-accent/80 mt-1 sm:mt-0">
                   {job.period}
                 </span>
               </div>
               
-              <div className="flex items-center gap-2 mb-4 text-gray-400">
-                <Briefcase size={16} />
-                <span className="text-lg font-medium">{job.company}</span>
+              <div className="flex items-center gap-2 mb-4 text-slate-400 font-mono text-sm">
+                <span className="text-accent">@</span>
+                <span>{job.company}</span>
               </div>
 
-              <div className="bg-white/5 p-6 rounded-xl border border-white/5 hover:bg-white/10 transition-colors duration-300">
+              <div className="bg-secondary/50 p-6 rounded border border-transparent hover:border-accent/20 transition-all duration-300">
                 <ul className="space-y-2">
                   {job.description.map((desc, index) => (
-                    <li key={index} className="text-gray-300 flex items-start gap-2">
-                      <span className="text-accent mt-1.5">•</span>
+                    <li key={index} className="text-slate-400 text-sm flex items-start gap-2">
+                      <span className="text-accent mt-1.5 text-xs">▹</span>
                       <span>{desc}</span>
                     </li>
                   ))}

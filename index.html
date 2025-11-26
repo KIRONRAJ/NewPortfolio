@@ -3,46 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kiron Raj | Portfolio</title>
+    <title>Kiron Raj | Cyber Security Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
-      // Randomize Accent Color on Refresh
-      const colors = [
-        '#38bdf8', // Sky 400
-        '#34d399', // Emerald 400
-        '#a78bfa', // Violet 400
-        '#fb7185', // Rose 400
-        '#fbbf24', // Amber 400
-        '#22d3ee', // Cyan 400
-        '#f472b6', // Pink 400
-        '#818cf8', // Indigo 400
-      ];
-      const randomAccent = colors[Math.floor(Math.random() * colors.length)];
-
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              serif: ['Playfair Display', 'serif'],
+              sans: ['"JetBrains Mono"', 'monospace'],
+              mono: ['"JetBrains Mono"', 'monospace'],
             },
             colors: {
-              primary: '#0f172a', // Slate 900
-              secondary: '#334155', // Slate 700
-              accent: randomAccent,
+              primary: '#020c1b', // Deep Navy
+              secondary: '#112240', // Light Navy
+              accent: '#64ffda', // Neon Green
+              slate: {
+                100: '#e6f1ff',
+                300: '#ccd6f6',
+                400: '#a8b2d1',
+                500: '#8892b0',
+              }
             },
             animation: {
-              'blob': 'blob 7s infinite',
               'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
-              blob: {
-                '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                '100%': { transform: 'translate(0px, 0px) scale(1)' },
-              },
               fadeInUp: {
                 '0%': { opacity: '0', transform: 'translateY(20px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
@@ -57,30 +44,33 @@
         scroll-behavior: smooth;
       }
       body {
-        background-color: #0f172a;
-        color: #f8fafc;
+        background-color: #020c1b;
+        color: #ccd6f6;
+        font-family: 'JetBrains Mono', monospace;
       }
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #1e293b;
+        background: #020c1b;
       }
       ::-webkit-scrollbar-thumb {
-        background: #475569;
+        background: #112240;
+        border: 1px solid #64ffda;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #64748b;
+        background: #64ffda;
       }
       
-      /* Animation Utility Classes */
-      .animation-delay-2000 {
-        animation-delay: 2s;
+      .cursor-blink {
+        animation: blink 1s step-end infinite;
       }
-      .animation-delay-4000 {
-        animation-delay: 4s;
+      
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
       }
     </style>
   <script type="importmap">

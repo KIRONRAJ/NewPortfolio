@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
           © {new Date().getFullYear()} {RESUME_DATA.name}. All rights reserved.
         </p>
         <p className="text-gray-600 text-xs mt-2">
-          Built with React, Tailwind, and Gemini AI.
+          Built with React and Tailwind.
         </p>
       </div>
     </footer>

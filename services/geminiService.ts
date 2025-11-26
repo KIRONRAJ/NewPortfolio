@@ -1,7 +1,28 @@
 import { GoogleGenAI } from "@google/genai";
 import { RESUME_DATA, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, EDUCATION } from '../constants';
 
-const apiKey = process.env.API_KEY || '';
+// Safely retrieve API key from various environment configurations (Vite or Standard)
+const getApiKey = (): string => {
+  // Check for Vite env (most likely for this project structure)
+  // @ts-ignore
+  if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_KEY) {
+    // @ts-ignore
+    return import.meta.env.VITE_API_KEY;
+  }
+  
+  // Check for standard Node/Webpack/CRA env
+  try {
+    if (typeof process !== 'undefined' && process.env && process.env.API_KEY) {
+      return process.env.API_KEY;
+    }
+  } catch (e) {
+    // process is not defined in this environment
+  }
+  
+  return '';
+};
+
+const apiKey = getApiKey();
 const ai = new GoogleGenAI({ apiKey });
 
 // Construct a context string for the AI to "know" Kiron

@@ -63,7 +63,6 @@ export const EDUCATION: Education[] = [
 ];
 
 export const CERTIFICATIONS: Certification[] = [
-  { name: "Certified Ethical Hacker (CEH)", issuer: "EC-Council", year: "2023" },
   { name: "Red Hat Certified System Administrator (RHCSA)", issuer: "Red Hat", year: "2018" },
   { name: "AWS Certified Solutions Architect - Associate", issuer: "Udemy / AWS", year: "2020" },
   { name: "cPanel Professional Certification (CPP)", issuer: "cPanel", year: "2021" },

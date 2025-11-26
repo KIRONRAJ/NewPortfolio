@@ -31,6 +31,11 @@ const Contact: React.FC = () => {
       .join("&");
   };
 
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (status === 'encrypting' || status === 'sending' || status === 'success') return;
@@ -38,6 +43,12 @@ const Contact: React.FC = () => {
     if (!formData.name || !formData.email || !formData.message) {
       setStatus('error');
       setErrorMessage('ERROR: DATA CORRUPTION DETECTED. SECTOR EMPTY.');
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      setStatus('error');
+      setErrorMessage('ERROR: INVALID RETURN ADDRESS PROTOCOL.');
       return;
     }
 

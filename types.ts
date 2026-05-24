@@ -6,6 +6,7 @@ export interface Project {
   imageUrl: string;
   link?: string;
   github?: string;
+  badge?: string;
 }
 
 export interface Experience {

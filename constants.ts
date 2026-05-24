@@ -117,6 +117,16 @@ export const EXPERIENCE: Experience[] = [
 export const PROJECTS: Project[] = [
   {
     id: "1",
+    title: "Replay Attack Prevention in Smart Car IoT Systems",
+    badge: "Ongoing Master's Project",
+    description: "This research addresses the growing security threat of replay attacks in IoT-based smart car systems, where attackers intercept and retransmit valid messages to gain unauthorized access — a threat that traditional detection methods struggle to counter. Existing defenses using either nonce-based or counter-based approaches each carry individual limitations around memory overhead and synchronization, so the study proposes a hybrid solution combining both, evaluated through a simulated smart vehicle environment across metrics like replay detection rate, latency, and attack success rate, with the goal of demonstrating a more robust, resource-efficient mitigation framework for IoT automotive security.",
+    technologies: ["Cyber Security", "Network Security", "Automotive IoT", "Hybrid Defenses", "Lightweight Cryptography"],
+    imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=800&auto=format&fit=crop",
+    link: "#",
+    github: "https://github.com/KIRONRAJ"
+  },
+  {
+    id: "2",
     title: "Intelligent Aquaponics",
     description: "An IoT-based system merging aquaculture with hydroponics. Features automated water temperature regulation, fish feeding, and a web application for real-time data visualization and monitoring.",
     technologies: ["IoT", "Android", "Web App", "Sensors", "Automation"],
@@ -125,7 +135,7 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/KIRONRAJ"
   },
   {
-    id: "2",
+    id: "3",
     title: "Wireless Audio Transmitter (FM)",
     description: "A compact device transmitting FM waves to amplify and modulate audio signals. Explored applications in assistive technology as a discreet wireless hearing aid.",
     technologies: ["Electronics", "Signal Processing", "Hardware"],

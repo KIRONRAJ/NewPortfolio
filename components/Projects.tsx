@@ -23,8 +23,13 @@ const Projects: React.FC = () => {
               className="group bg-secondary rounded overflow-hidden border border-transparent hover:border-accent/30 hover:-translate-y-2 transition-all duration-300 ease-out animate-on-scroll opacity-0 translate-y-10 flex flex-col h-full relative"
             >
               {/* Folder Header */}
-              <div className="p-6 flex justify-between items-start pb-0">
+              <div className="p-6 flex justify-between items-center pb-0">
                 <Folder className="w-10 h-10 text-accent/80" />
+                {project.badge && (
+                  <span className="text-[10.5px] font-mono font-semibold text-accent border border-accent/30 bg-accent/5 px-2 py-0.5 rounded tracking-wide">
+                    {project.badge}
+                  </span>
+                )}
               </div>
 
               <div className="p-6 flex flex-col flex-grow">

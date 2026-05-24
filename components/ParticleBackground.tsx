@@ -21,6 +21,11 @@ const ParticleBackground: React.FC = () => {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
+    const getAccentColor = () => {
+      if (typeof window === 'undefined') return '#64ffda';
+      return getComputedStyle(document.documentElement).getPropertyValue('--accent-hex').trim() || '#64ffda';
+    };
+
     class Particle {
       x: number;
       y: number;
@@ -47,7 +52,7 @@ const ParticleBackground: React.FC = () => {
 
       draw() {
         if (!ctx) return;
-        ctx.fillStyle = '#64ffda'; // Accent color
+        ctx.fillStyle = getAccentColor(); // Accent color dynamically
         ctx.globalAlpha = 0.5;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -67,6 +72,8 @@ const ParticleBackground: React.FC = () => {
       if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
+      const currentAccent = getAccentColor();
+
       // Update and draw particles
       particles.forEach((particle) => {
         particle.update();
@@ -83,8 +90,8 @@ const ParticleBackground: React.FC = () => {
 
           if (distance < 150) {
             ctx.beginPath();
-            ctx.strokeStyle = '#64ffda';
-            ctx.globalAlpha = 1 - distance / 150; // Fade out as distance increases
+            ctx.strokeStyle = currentAccent;
+            ctx.globalAlpha = (1 - distance / 150) * 0.4; // Fade out as distance increases and keep subtle
             ctx.lineWidth = 0.5;
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);

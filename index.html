@@ -15,9 +15,9 @@
               mono: ['"JetBrains Mono"', 'monospace'],
             },
             colors: {
-              primary: '#020c1b', // Deep Navy
-              secondary: '#112240', // Light Navy
-              accent: '#64ffda', // Neon Green
+              primary: 'rgb(var(--color-primary) / <alpha-value>)',
+              secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+              accent: 'rgb(var(--color-accent) / <alpha-value>)',
               slate: {
                 100: '#e6f1ff',
                 300: '#ccd6f6',
@@ -40,11 +40,37 @@
       }
     </script>
     <style>
+      :root, [data-theme="green"] {
+        --color-primary: 2 12 27;     /* #020c1b */
+        --color-secondary: 17 34 64;  /* #112240 */
+        --color-accent: 100 255 218;  /* #64ffda */
+        --accent-hex: #64ffda;
+      }
+      [data-theme="purple"] {
+        --color-primary: 30 30 46;    /* #1e1e2e */
+        --color-secondary: 46 46 62;   /* #2e2e3e */
+        --color-accent: 189 147 249;  /* #bd93f9 */
+        --accent-hex: #bd93f9;
+      }
+      [data-theme="amber"] {
+        --color-primary: 26 15 0;     /* #1a0f00 */
+        --color-secondary: 43 26 0;    /* #2b1a00 */
+        --color-accent: 255 176 0;    /* #ffb000 */
+        --accent-hex: #ffb000;
+      }
+      [data-theme="monochrome"] {
+        --color-primary: 15 15 17;    /* #0f0f11 */
+        --color-secondary: 34 34 37;   /* #222225 */
+        --color-accent: 255 255 255;  /* #ffffff */
+        --accent-hex: #ffffff;
+      }
+
       html {
         scroll-behavior: smooth;
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
       body {
-        background-color: #020c1b;
+        background-color: rgb(var(--color-primary));
         color: #ccd6f6;
         font-family: 'JetBrains Mono', monospace;
       }
@@ -53,15 +79,15 @@
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #020c1b;
+        background: rgb(var(--color-primary));
       }
       ::-webkit-scrollbar-thumb {
-        background: #112240;
-        border: 1px solid #64ffda;
+        background: rgb(var(--color-secondary));
+        border: 1px solid rgb(var(--color-accent));
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #64ffda;
+        background: rgb(var(--color-accent));
       }
       
       .cursor-blink {

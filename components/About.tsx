@@ -40,16 +40,43 @@ const About: React.FC = () => {
                 Education_History
               </h3>
               <div className="space-y-4">
-                {EDUCATION.map((edu) => (
-                  <div key={edu.id} className="bg-secondary p-4 rounded border border-transparent hover:border-accent/30 transition-colors">
-                    <h4 className="text-slate-200 font-bold text-sm">{edu.degree}</h4>
-                    <p className="text-accent text-xs mt-1 font-mono">{edu.institution}</p>
-                    <div className="flex items-center gap-2 mt-2 text-xs text-slate-500 font-mono">
-                      <Calendar className="w-3 h-3" />
-                      <span>{edu.year}</span>
+                {EDUCATION.map((edu) => {
+                  const isCurrent = edu.year.toLowerCase().includes('current');
+                  return (
+                    <div 
+                      key={edu.id} 
+                      className={`bg-secondary p-4 rounded border transition-all duration-300 ${
+                        isCurrent 
+                          ? 'border-accent/40 shadow-[0_0_15px_rgba(var(--color-accent),0.05)] ring-1 ring-accent/20 animate-pulse-slow' 
+                          : 'border-transparent hover:border-accent/30'
+                      }`}
+                    >
+                      <div className="flex justify-between items-start gap-3">
+                        <h4 className="text-slate-200 font-bold text-sm leading-tight">{edu.degree}</h4>
+                        {isCurrent && (
+                          <span className="flex h-2 w-2 mt-1 relative flex-shrink-0">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-accent text-xs mt-1 font-mono">{edu.institution}</p>
+                      <div className="flex items-center gap-2 mt-2 text-xs font-mono">
+                        {isCurrent ? (
+                          <span className="text-accent animate-pulse flex items-center gap-1.5 font-bold tracking-wider text-[10px]">
+                            <span className="inline-block w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
+                            {edu.year.toUpperCase()}
+                          </span>
+                        ) : (
+                          <>
+                            <Calendar className="w-3 h-3 text-slate-500" />
+                            <span className="text-slate-500">{edu.year}</span>
+                          </>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

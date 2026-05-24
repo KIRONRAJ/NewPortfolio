@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Github, Linkedin, Mail, Download, Globe } from 'lucide-react';
+import { Github, Linkedin, Mail, Download, Globe, Volume2, VolumeX } from 'lucide-react';
 import { RESUME_DATA, SOCIALS, SKILLS, PROJECTS } from '../constants';
 import { CyberTheme } from '../App';
 
@@ -116,6 +116,13 @@ const Hero: React.FC<HeroProps> = ({ setTheme }) => {
   const [bootLineIndex, setBootLineIndex] = useState(0);
   const [inputVal, setInputVal] = useState('');
   const [isHacking, setIsHacking] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('kironraj-typing-sound');
+      return saved !== 'false';
+    }
+    return true;
+  });
 
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -127,6 +134,57 @@ const Hero: React.FC<HeroProps> = ({ setTheme }) => {
     'Kironraj OS [Version 1.0.0] (Web Console CLI Ready)'
   ];
 
+  useEffect(() => {
+    localStorage.setItem('kironraj-typing-sound', String(soundEnabled));
+  }, [soundEnabled]);
+
+  const playTypingSound = () => {
+    if (!soundEnabled) return;
+    try {
+      const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const bufferSize = audioCtx.sampleRate * 0.012;
+      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+      
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = buffer;
+      
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.setValueAtTime(1800, audioCtx.currentTime);
+      filter.Q.setValueAtTime(3, audioCtx.currentTime);
+      
+      const gainNode = audioCtx.createGain();
+      gainNode.gain.setValueAtTime(0.03, audioCtx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.01);
+      
+      noise.connect(filter);
+      filter.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      
+      noise.start();
+      
+      if (Math.random() > 0.7) {
+        const osc = audioCtx.createOscillator();
+        const oscGain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(140, audioCtx.currentTime);
+        
+        oscGain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+        oscGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.012);
+        
+        osc.connect(oscGain);
+        oscGain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.015);
+      }
+    } catch (err) {}
+  };
+
   // Character typewriter effect for booting instructions
   useEffect(() => {
     if (bootLineIndex < bootLines.length) {
@@ -134,6 +192,7 @@ const Hero: React.FC<HeroProps> = ({ setTheme }) => {
       if (currentBootText.length < fullText.length) {
         const timeout = setTimeout(() => {
           setCurrentBootText(prev => prev + fullText[currentBootText.length]);
+          playTypingSound();
         }, 25);
         return () => clearTimeout(timeout);
       } else {
@@ -154,7 +213,7 @@ const Hero: React.FC<HeroProps> = ({ setTheme }) => {
         { type: 'output', text: 'Type "help" to view list of secure commands.' }
       ]);
     }
-  }, [bootLineIndex, currentBootText]);
+  }, [bootLineIndex, currentBootText, soundEnabled]);
 
   // Handle scrolling to bottom of terminal content without causing the browser page to scroll
   useEffect(() => {
@@ -367,8 +426,30 @@ const Hero: React.FC<HeroProps> = ({ setTheme }) => {
               <div className="w-3 h-3 rounded-full bg-green-500"></div>
               <span className="ml-2 text-xs text-slate-500 font-mono flex-1">visitor@kironraj-desktop:~/portfolio</span>
               {!booting && (
-                <span className="text-[10px] text-accent/50 mr-2 font-mono hidden sm:inline select-none">TYPE 'help' FOR UTILITIES</span>
+                <span className="text-[10px] text-accent/50 mr-4 font-mono hidden sm:inline select-none">TYPE 'help' FOR UTILITIES</span>
               )}
+              
+              {/* Audio Mechanical Click Enable/Disable Toggle */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSoundEnabled(!soundEnabled);
+                }}
+                className="p-1 px-2 border border-accent/20 text-accent hover:bg-accent/10 transition-colors flex items-center gap-1.5 text-[10px] font-mono rounded"
+                title={soundEnabled ? "Mute mechanical key sounds" : "Unmute mechanical key sounds"}
+              >
+                {soundEnabled ? (
+                  <>
+                    <Volume2 className="w-3 h-3 text-accent animate-pulse-slow" />
+                    <span>SOUND_ON</span>
+                  </>
+                ) : (
+                  <>
+                    <VolumeX className="w-3 h-3 text-slate-500" />
+                    <span className="text-slate-500">SOUND_OFF</span>
+                  </>
+                )}
+              </button>
             </div>
             
             {/* Terminal Console Stream */}
@@ -411,7 +492,10 @@ const Hero: React.FC<HeroProps> = ({ setTheme }) => {
                       ref={inputRef}
                       type="text"
                       value={inputVal}
-                      onChange={(e) => setInputVal(e.target.value)}
+                      onChange={(e) => {
+                        setInputVal(e.target.value);
+                        playTypingSound();
+                      }}
                       className="bg-transparent border-none outline-none flex-1 text-slate-100 font-mono min-w-0"
                       autoFocus
                       maxLength={50}
